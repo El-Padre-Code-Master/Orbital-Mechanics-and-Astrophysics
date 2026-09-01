@@ -91,12 +91,12 @@ craft_trail, = ax.plot([], [], [], color='#00ffcc', linewidth=2.2, label='Active
 ax.set_xlim(-1.8, 1.8)
 ax.set_ylim(-1.8, 1.8)
 ax.set_zlim(-0.6, 0.6)
-ax.set_box_aspect([1, 1, 0.35])  # Flattens Z axis for clean planetary plane view
+ax.set_box_aspect([1, 1, 0.35])  
 ax.set_axis_off()
 
 ax.legend(facecolor='#161b22', edgecolor='#30363d', labelcolor='white', loc='lower right', bbox_to_anchor=(0.98, 0.02))
 
-# Telemetry Display safely placed at top-left inside margins
+# Telemetry Display 
 phase_diff_deg = np.degrees((th_m_dept - th_e_dept) % (2*np.pi) - required_phase_angle)
 info = (
     f"--- MISSION TELEMETRY ---\n"
