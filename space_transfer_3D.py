@@ -3,10 +3,9 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 from matplotlib.widgets import Button
 
-# --- DISABLE DEFAULT MATPLOTLIB TOP TOOLBAR ---
 plt.rcParams['toolbar'] = 'none'
 
-# --- ASTRODYNAMICS CONSTANTS ---
+#ASTRODYNAMICS CONSTANTS
 G = 6.67430e-11
 M_SUN = 1.989e30
 AU = 1.496e11
@@ -30,7 +29,7 @@ if optimal_launch_day < 0:
     optimal_launch_day += 365.25
 
 print(f"\n=======================================================")
-print(f" SUGGESTED OPTIMAL LAUNCH WINDOW: Day {optimal_launch_day:.1f}")
+print(f" SUGGESTED OPTIMAL LAUNCH WINDOW: Day of the year {optimal_launch_day:.1f}")
 print(f"=======================================================\n")
 
 user_input = input(f"Enter Departure Day (1-365) [Press Enter for Optimal Day {optimal_launch_day:.0f}]: ")
@@ -42,7 +41,7 @@ else:
     except ValueError:
         dept_day = optimal_launch_day
 
-# --- POSITIONAL COMPUTATIONS ---
+#POSITIONAL COMPUTATIONS
 th_e_dept = W_EARTH * dept_day
 th_m_dept = W_MARS * dept_day
 arr_day = dept_day + tof_days
@@ -66,14 +65,12 @@ v_aphelion = np.sqrt(G * M_SUN * (2/(R_MARS_AU*AU) - 1/a_trans_m))
 delta_v_dept = abs(v_perihelion - v_earth) / 1000.0
 delta_v_arr = abs(v_mars - v_aphelion) / 1000.0
 
-# --- SETUP FIXED 3D VISUAL FRAME ---
 fig = plt.figure(figsize=(10, 8), facecolor='#0a0c10')
 ax = fig.add_subplot(111, projection='3d', facecolor='#0a0c10')
 
-# Padding around bounds to keep content clear of edges
 plt.subplots_adjust(left=0.02, right=0.98, bottom=0.10, top=0.88)
 
-# Background Orbits
+#Background Orbits
 theta = np.linspace(0, 2*np.pi, 300)
 ax.plot(R_EARTH_AU*np.cos(theta), R_EARTH_AU*np.sin(theta), 0, color='#4ba3e3', linestyle=':', alpha=0.35, label='Earth Orbit')
 ax.plot(R_MARS_AU*np.cos(theta), R_MARS_AU*np.sin(theta), 0, color='#e25822', linestyle=':', alpha=0.35, label='Mars Orbit')
